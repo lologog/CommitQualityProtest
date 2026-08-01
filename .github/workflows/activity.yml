@@ -1,0 +1,41 @@
+name: Artificial GitHub Activity
+
+on:
+  schedule:
+    # Run once every hour, at 17 minutes past the hour
+    # GitHub Actions cron schedules use UTC
+    - cron: "17 * * * *"
+
+  # Allow the workflow to be started manually from the Actions tab
+  workflow_dispatch:
+
+# Allow the workflow to commit and push changes to the repository
+permissions:
+  contents: write
+
+jobs:
+  update-activity:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download the repository contents to the runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configure the Git author used for automated commits
+      - name: Configure Git author
+        run: |
+          git config user.name "Krzysztof Tomicki"
+          git config user.email "tomicki.krzysztof.pv@gmail.com"
+
+      # Append the current UTC date and time to the activity file
+      - name: Update activity file
+        run: |
+          echo "$(date -u '+%Y-%m-%d %H:%M:%S UTC') - Another meaningful contribution to the sacred graph" >> activity.log
+
+      # Commit the updated file and push it to the repository
+      - name: Commit and push
+        run: |
+          git add activity.log
+          git commit -m "chore: maintain corporate employability"
+          git push
