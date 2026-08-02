@@ -2,8 +2,6 @@
 
 [![Artificial GitHub Activity](https://github.com/lologog/CommitQualityProtest/actions/workflows/activity.yml/badge.svg)](https://github.com/lologog/CommitQualityProtest/actions/workflows/activity.yml)
 
-> Making the contribution graph greener without making the software better.
-
 This repository is a small protest against evaluating software developers
 based on the number of commits, GitHub activity streaks, or the color of
 their contribution graph.
